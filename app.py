@@ -30,3 +30,13 @@ print(f"y_pred: {y_pred} ")
 # Calcular la precisión del modelo
 precision = accuracy_score(y_test, y_pred)
 print("Precisión del modelo:", precision)
+
+# Hacer predicciones de probabilidad en el conjunto de prueba
+probabilidades = modelo.predict_proba(X_test)
+
+# Extraer la probabilidad de tener cáncer (clase 1)
+probabilidad_de_cancer = probabilidades[:, 1]
+
+# Imprimir la probabilidad de tener cáncer en porcentaje
+for prob in probabilidad_de_cancer:
+    print(f"Probabilidad de tener cáncer: {prob*100:.2f}%")
