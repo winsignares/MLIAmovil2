@@ -15,19 +15,13 @@ def alldata():
     respo = datas_schema(resultAll)
     return jsonify(respo)
 
-@ruta_user.route("/registrarUsuario", methods=['POST'])
+@ruta_data.route("/registrardato", methods=['POST'])
 def registrardato():
-    fullname= request.json['fullname']
-    email = request.json['email']
-    newuser = Users(fullname, email)
-    db.session.add(newuser)
+    cigaretteday= request.json['cigaretteday']
+    habitduration = request.json['habitduration']
+    lungcancer= request.json['lungcancer']
+    newdata = Datamli(cigaretteday, habitduration,lungcancer)
+    db.session.add(newdata)
     db.session.commit()
     return "Guardado"
 
-@ruta_user.route("eliminarUsuario", methods=['DELETE'])
-def eliminarUsuario():
-    id = request.json['id'] 
-    usuario = Users.query.get(id)    
-    db.session.delete(usuario)
-    db.session.commit()     
-    return jsonify(usuario_schema.dump(usuario))
